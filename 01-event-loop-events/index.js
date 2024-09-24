@@ -8,7 +8,7 @@ function info(text) {
 console.log('Program start');
 
 //Close events
-fs.writeFile('./test.txt', 'Hello Node.js', () => info('File written'));
+fs.writeFile('./Node/test.txt', 'Hello Node.js', () => info('File written'));
 
 // Promises
 Promise.resolve().then(() => info('Promise 1'));
