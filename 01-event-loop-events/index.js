@@ -25,10 +25,14 @@ setTimeout(() => {
     process.nextTick(() => console.log('Next tick 2', timestamp())),
 
         console.log('Timeout 2', timestamp());
-}, 10);
+}, 100);
 
 // Intervals
-setInterval(() => console.log(``))
+let intervalCount = 0;
+const intervalId = setInterval(() => {
+    console.log(`Inteval ${intervalCount += 1}`, timestamp());
+    if (intervalCount === 2) clearInterval(intervalId);
+}, 50);
 
 // I/O Events
 dns.lookup('localhost', (err, address, family) => {
