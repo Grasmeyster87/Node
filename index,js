@@ -1,4 +1,0 @@
-console.log("Hello Node.js");
-
-const myName = '\nVitaliy';
-console.log(myName);
