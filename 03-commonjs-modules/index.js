@@ -4,10 +4,24 @@ console.log(arguments.callee.toString());
 console.log('Vitaliy');
 */
 
-const { myName, myHobbeis, myFavoriteNumber } = require('./multiple-export');
+const { myName, myHobbies, myFavoriteNumber } = require('./multiple-export');
+const { myName: myOtherName, myFriendsName, myGreatHobbies } = require('./export-and-import');
+const greetingFn = require('./single-export');
 
+//const greetingFn = require('/xampp/htdocs/Node/03-commonjs-modules/single-export.js');
+
+// IMports from multiple-exports
 console.log(myName);
-
-console.log(myHobbeis);
-
+console.log(myHobbies);
 console.log(myFavoriteNumber);
+
+myHobbies.push('climbing');
+
+// Import from single-export
+console.log(greetingFn);
+greetingFn(myName);
+
+// Imports from export-and-import
+console.log(myOtherName);
+console.log(myFriendsName);
+console.log(myGreatHobbies);
