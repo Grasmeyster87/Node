@@ -1,20 +1,10 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 
-fs.writeFile('./05-fs/first.txt', 'First file text', (err) => {
-    if (err) console.log(err);
-    else {
-        console.log('File first.txt was written');
+fs.writeFile('./05-fs/second.txt', 'Second file text')
+    .then(() => console.log('File first.txt was written'))
+    .then(() => fs.appendFile('./05-fs/second.txt', '\nOne more line'))
+    .then(() => console.log('Append text to the first.txt file'))
+    .then(() => fs.rename('./05-fs/second.txt', './05-fs/second.txt'))
+    .then(() => console.log('File was renamed'))
+    .then((err) => console.log(err));
 
-        fs.appendFile('./05-fs/first.txt', '\nOne more line', (err) => {
-            if (err) console.log(err);
-            else {
-                console.log('Append text to the first.txt file');
-                fs.rename('./05-fs/first.txt', './05-fs/renamed-first.txt', (err) => {
-                    if (err) console.log(err);
-                    else console.log('File was renamed');
-                });
-            }
-        });
-
-    }
-});
