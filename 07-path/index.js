@@ -15,4 +15,27 @@ console.log(path.basename(directoryPath)); // subfolder
 console.log(path.dirname(filePath)); //  /d/xampp/htdocs/Node/07-path
 console.log(path.dirname(directoryPath)); // ./07-path
 
-console.log(path.resolve(relativePath));
+console.log(path.resolve(relativePath)); // d:\xampp\htdocs\Node\07-path\movie.mov
+
+console.log(path.extname(textFilePath)); // .txt
+console.log(path.extname(relativePath)); // .mov
+console.log(path.extname(directoryPath)); // пустая строка ''
+
+console.log(path.parse(filePath));
+/*
+{
+  root: '/',
+  dir: '/d/xampp/htdocs/Node/07-path',
+  base: 'index.js',
+  ext: '.js',
+  name: 'index'
+}
+*/
+
+const parsedPath = path.parse(filePath);
+
+console.log(filePath);
+// /d/xampp/htdocs/Node/07-path/index.js
+
+console.log(path.join(parsedPath.dir, `renamed-${parsedPath.name}.mjs`));
+// \d\xampp\htdocs\Node\07-path\renamed-index.mjs
