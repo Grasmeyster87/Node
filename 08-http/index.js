@@ -28,6 +28,10 @@ const server = http.createServer((req, res) => {
         res.setHeader('Content-Type', 'application/json');
         return res.end(JSON.stringify(comments));
     }
+
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/html');
+    return res.end('<h1>Page not found!</h1>');
 });
 
 server.listen(PORT, () => {
