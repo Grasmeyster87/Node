@@ -1,5 +1,5 @@
 const http = require('http');
-const { getHTML, getText, getComments, handleNotFound } = require('./handlers.js');
+const { getHTML, getText, getComments, handleNotFound, postComment } = require('./handlers.js');
 const PORT = 5000;
 
 const server = http.createServer((req, res) => {
@@ -13,6 +13,9 @@ const server = http.createServer((req, res) => {
 
     if (req.method === 'GET' && req.url === '/comments') {
         getComments(req, res);
+    }
+    if (req.method === 'POST' && req.url === '/comments') {
+        return postComment(req, res);
     }
     handleNotFound(req, res);
 });
