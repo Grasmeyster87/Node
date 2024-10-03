@@ -37,3 +37,5 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
     console.log(`Server was launched on port ${PORT}`);
 });
+
+// thunder client install
