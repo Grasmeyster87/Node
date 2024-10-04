@@ -1,4 +1,5 @@
 const fs = require('fs');
+const qs = require('querystring');
 
 const comments = require('./data');
 
@@ -39,7 +40,32 @@ function getComments(req, res) {
 
 function postComment(req, res) {
     res.setHeader('Content-Type', 'text/plain');
-    if (req.headers['content-type'] === 'application/json') {
+
+    if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
+
+        let body = '';
+
+        req.on('data', (chunk) => {
+            body += chunk.toString();
+        });
+
+        req.on('end', () => {
+            try {
+                //console.log(body);
+                const comment = qs.parse(body);
+                //console.log(comment);
+                comments.push(comment);
+                res.statusCode = 200;
+                res.end('Comment data was received');
+            } catch (error) {
+                res.statusCode = 400;
+                res.end('Invalid Form data');
+            }
+
+
+        });
+
+    } else if (req.headers['content-type'] === 'application/json') {
         let commentJSON = '';
         req.on('data', (chunk) => (commentJSON += chunk));
 
@@ -57,7 +83,7 @@ function postComment(req, res) {
         });
     } else {
         res.statusCode = 400;
-        res.end('Data must be in JSON format');
+        res.end('Data must be in JSON format or as form');
     }
 }
 
