@@ -54,9 +54,13 @@ function postComment(req, res) {
                 //console.log(body);
                 const comment = qs.parse(body);
                 //console.log(comment);
+                comment.id = parseInt(comment.id);
                 comments.push(comment);
                 res.statusCode = 200;
-                res.end('Comment data was received');
+                res.setHeader('Content-Type', 'text/html');
+                res.write('<h1>Comment data was received</h1>');
+                res.write('<a href="/">Submit one more comment</a>\n');
+                res.end();
             } catch (error) {
                 res.statusCode = 400;
                 res.end('Invalid Form data');
