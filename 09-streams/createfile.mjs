@@ -31,5 +31,5 @@ console.log('End', performance.now());
 setTimeout(() => console.log('Timeout', performance.now()), 0);
 
 writeStream.end(() => {
-    console.log(`Automatically generated file ${fileName} was created!`);
+    console.log(`Automatically generated file ${fileName} with ${linesQty} lines was created!`);
 });
