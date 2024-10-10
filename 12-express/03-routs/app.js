@@ -23,8 +23,9 @@ const postCommentsHandler = (req, res) => {
 };
 
 app.get('/', getRootHandler);
-app.get('/comments', getCommentsHandler);
-app.post('/comments', postCommentsHandler);
+app.route('/comments').get(getCommentHandler).post(postCommentsHandler);
+/* app.get('/comments', getCommentsHandler);
+app.post('/comments', postCommentsHandler); */
 app.get('/comments/:commentId', getCommentHandler);
 
 app.listen(5000, () => console.log('Server was started on port 5000'));
