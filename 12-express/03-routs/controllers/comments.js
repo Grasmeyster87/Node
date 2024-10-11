@@ -4,7 +4,7 @@ const getCommentsHandler = (req, res) => {
 };
 
 const getSingleCommentHandler = (req, res) => {
-    console.log(req.params);
+    //console.log(req.params);
     res.send(`Get comment route. CommentId ${req.params.commentId}`);
 };
 
