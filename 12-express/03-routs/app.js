@@ -1,6 +1,7 @@
 
 
 const express = require('express');
+const commentsRouter = require('./routes/comments.js');
 
 const app = express();
 
@@ -8,10 +9,6 @@ const getRootHandler = (req, res) => {
     console.log('First handler');
     res.send('Get root route');
 };
-
-
-
-app.get('/', getRootHandler);
 
 // users
 
@@ -32,7 +29,9 @@ const postUsersHandler = (req, res) => {
 
 //app.route('/comments').get(getCommentHandler).post(postCommentsHandler);
 
+app.get('/', getRootHandler);
 
+app.use('/comments', commentsRouter);
 
 app.get('/users', getUsersHadler);
 app.post('/users', postUsersHandler);

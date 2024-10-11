@@ -6,7 +6,7 @@ const {
     deleteSingleCommentHandler
 } = require('../controllers/comments');
 
-const router = express.Route();
+const router = express.Router();
 
 
 router.get('/', getCommentsHandler);
