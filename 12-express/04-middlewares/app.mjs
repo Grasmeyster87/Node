@@ -19,6 +19,14 @@ app.use(logger (req, res) => res.send('This is express server'));
 */
 app.use(morgan('combined'));
 
+app.use((req, res, next) => {
+    //console.log(req);
+    let data = '';
+    req.on('data', (chunk) => (data += chunk));
+    req.on('end', () => console.log(JSON.parse(data)));
+    next();
+});
+
 app.use((req, res) => res.send('This is express server'));
 
 
