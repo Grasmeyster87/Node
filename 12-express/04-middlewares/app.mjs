@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import qs from 'querystring';
 
 const app = express();
 
@@ -31,6 +32,24 @@ app.use(express.json());
         next();
     });
 }); */
+
+app.use((req, res, next) => {
+    if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
+        let data = '';
+        req.on('data', (chunk) => data += chunk.toString());
+        req.on('end', () => {
+            //console.log(data)
+            const parsedFromData = qs.parse(data);
+            //console.log(parsedFromData);
+            req.body = parsedFromData;
+            next();
+        });
+    } else {
+        next();
+    }
+    //console.log(req);
+    //console.log(req.headers['content-type']);
+});
 
 app.use((req, res) => {
     console.log(req.body);
