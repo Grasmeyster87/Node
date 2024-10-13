@@ -16,7 +16,7 @@ function App() {
     <div className="App">
       {person && <>
         <h1>{person.name}</h1>
-        <h1>{person.isInstructor ? 'Instructor' : 'Student'}</h1>
+        <h1>{person.isInstructor ? 'Finishid course' : 'Not finishid course'}</h1>
       </>}
 
     </div>
