@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import cors from 'cors';
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(express.json());
 // extended: true использум внешний модуль qs
 app.use(express.urlencoded({ extended: true }));
 
+//enable all CORS requests
+app.use(cors());
 
 app.use((req, res) => {
     const personData = {
